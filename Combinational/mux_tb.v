@@ -46,27 +46,54 @@
 
 // endmodule;
 
-module muxtest();
-reg [3:0] in;
-reg [1:0] sel;
+// module muxtest();
+// reg [3:0] in;
+// reg [1:0] sel;
+// wire out;
+
+// mux m(in,sel,out);
+
+// initial begin
+//     in=4'b0;
+//     sel=2'b0;
+// end
+
+// initial begin
+//     #10  in=4'b 1000;sel=2'b 11;
+//     #10  in=4'b 1000;sel=2'b 01;
+//     #10  in=4'b 1001;sel=2'b 00;
+// end
+
+// initial begin
+//     $monitor($time," ","in=%b sel=%b out=%b",in,sel,out);
+//     #40 $finish;
+// end
+
+// endmodule;
+
+
+//FOR 8*1 MUX
+module test();
+reg [7:0] in;
+reg [2:0] sel;
 wire out;
 
 mux m(in,sel,out);
 
 initial begin
-    in=4'b0;
-    sel=2'b0;
+    in=8'b0;
+    sel=3'b0;
 end
 
 initial begin
-    #10  in=4'b 1000;sel=2'b 11;
-    #10  in=4'b 1000;sel=2'b 01;
-    #10  in=4'b 1001;sel=2'b 00;
+    #10  in=8'b 10001010;sel=3'b 001;
+    #10  in=8'b 10000000;sel=3'b 111;
+    #10  in=8'b 10010000;sel=3'b 000;
 end
 
 initial begin
     $monitor($time," ","in=%b sel=%b out=%b",in,sel,out);
     #40 $finish;
 end
-
-endmodule;
+    
+endmodule
