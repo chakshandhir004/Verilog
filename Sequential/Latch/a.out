@@ -1,0 +1,54 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_010B2708 .scope module, "test" "test" 2 1;
+ .timescale 0 0;
+v0107ED60_0 .net "q", 0 0, L_0107EF68; 1 drivers
+v0107EDB8_0 .net "qbar", 0 0, L_010B3820; 1 drivers
+v0107EE10_0 .var "r", 0 0;
+v0107EE68_0 .var "s", 0 0;
+S_010714C8 .scope module, "l" "latch" 2 5, 3 12, S_010B2708;
+ .timescale 0 0;
+L_0107EEC0 .functor AND 1, v0107EE10_0, L_010B3820, C4<1>, C4<1>;
+L_0107EF68 .functor NOT 1, L_0107EEC0, C4<0>, C4<0>, C4<0>;
+L_010B37B0 .functor AND 1, v0107EE68_0, L_0107EF68, C4<1>, C4<1>;
+L_010B3820 .functor NOT 1, L_010B37B0, C4<0>, C4<0>, C4<0>;
+v01071550_0 .net *"_s0", 0 0, L_0107EEC0; 1 drivers
+v010715A8_0 .net *"_s4", 0 0, L_010B37B0; 1 drivers
+v01073BE0_0 .alias "q", 0 0, v0107ED60_0;
+v01073C38_0 .alias "qbar", 0 0, v0107EDB8_0;
+v01073C90_0 .net "r", 0 0, v0107EE10_0; 1 drivers
+v01073CE8_0 .net "s", 0 0, v0107EE68_0; 1 drivers
+    .scope S_010B2708;
+T_0 ;
+    %delay 5, 0;
+    %set/v v0107EE10_0, 1, 1;
+    %set/v v0107EE68_0, 0, 1;
+    %delay 5, 0;
+    %set/v v0107EE10_0, 1, 1;
+    %set/v v0107EE68_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0107EE10_0, 0, 1;
+    %set/v v0107EE68_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0107EE10_0, 1, 1;
+    %set/v v0107EE68_0, 1, 1;
+    %delay 5, 0;
+    %set/v v0107EE10_0, 1, 1;
+    %set/v v0107EE68_0, 1, 1;
+    %end;
+    .thread T_0;
+    .scope S_010B2708;
+T_1 ;
+    %vpi_call 2 18 "$monitor", $time, " ", "s=%b r=%b q=%b qbar=%b", v0107EE68_0, v0107EE10_0, v0107ED60_0, v0107EDB8_0;
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "latch_tb.v";
+    "latch.v";
