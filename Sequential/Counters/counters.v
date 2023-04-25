@@ -1,7 +1,7 @@
 
 //Counters
-// `define TRUE 1'b1
-// `define FALSE 1'b0
+`define TRUE 1'b1
+`define FALSE 1'b0
 
 // module upcounter(Q,clk,clr);
 // input clk,clr;
@@ -42,4 +42,37 @@
 //         q=~q;
 
 // end
+
+
+//Up down counter
+// module counter(clr,ld,mode,clk,d_in,out);
+// input clr,ld,mode,clk;
+// input [7:0] d_in;
+// wire d_in;
+// output [7:0] out;
+// reg out;
+
+// always @(posedge clk) begin
+//     if(ld) out<=d_in;
+//     else if (clr) out<=0;
+//     else if (mode) out<=out+1;
+//     else out<=out-1;
+// end
+    
+// endmodule
+
+
+//Parametrized Counter
+module counter (clk,clr,count);
+parameter N = 3;
+input clk,clr;
+output [0:N] count;
+reg count;
+
+always @(posedge clk) begin
+    if(clr) count<=0;
+    else count<=count+4'b 0001;
+end
+    
+endmodule
     

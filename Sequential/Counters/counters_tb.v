@@ -33,3 +33,60 @@
 // endmodule
 
 
+// module test();
+// reg clk,clr,ld,mode;
+// reg [7:0] d_in;
+// wire [7:0] out;
+
+// counter c(clr,ld,mode,clk,d_in,out);
+
+// initial begin
+//     clk=`TRUE;
+//     forever #5 clk=~clk;
+// end
+
+// initial begin
+//     d_in=8'b 0;
+// end
+
+// initial begin
+//     #10 clr=0;ld=1;mode=1;
+//     #10 clr=0;ld=0;mode=1;
+//     #10 clr=0;ld=1;mode=1;
+// end
+
+// initial begin
+//     $monitor($time," ","out=%b",out);
+//     #40 $finish;
+// end
+
+  
+// endmodule
+
+
+
+module test ();
+reg clk,clr;
+parameter N = 3;
+wire [0:N] count;
+
+counter c(clk,clr,count);
+
+
+initial begin
+    clk=`TRUE;
+    forever #5 clk=~clk;
+end
+
+initial begin
+    #10 clr=0;
+    #10 clr=0;
+    #10 clr=1;
+end
+
+initial begin
+    $monitor($time," "," clr=%b, count=%b",clr,count);
+    #40 $finish;
+end
+
+endmodule
