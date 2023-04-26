@@ -1,0 +1,129 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011138A8 .scope module, "test" "test" 2 1;
+ .timescale 0 0;
+v010D15E0_0 .var "clk", 0 0;
+v010D1638_0 .var "x", 0 0;
+v010D1690_0 .net "z", 0 0, v010D1588_0; 1 drivers
+S_010D4278 .scope module, "p" "parity" 2 4, 3 1, S_011138A8;
+ .timescale 0 0;
+P_010D3424 .param/l "EVEN" 3 5, +C4<0>;
+P_010D3438 .param/l "ODD" 3 5, +C4<01>;
+v010D3478_0 .net "clk", 0 0, v010D15E0_0; 1 drivers
+v010D4300_0 .var "even_odd", 0 0;
+v010D4358_0 .net "x", 0 0, v010D1638_0; 1 drivers
+v010D1588_0 .var "z", 0 0;
+E_010D4C10 .event posedge, v010D3478_0;
+    .scope S_010D4278;
+T_0 ;
+    %wait E_010D4C10;
+    %load/v 8, v010D4300_0, 1;
+    %cmpi/u 8, 0, 1;
+    %jmp/1 T_0.0, 6;
+    %cmpi/u 8, 1, 1;
+    %jmp/1 T_0.1, 6;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010D4300_0, 0, 0;
+    %jmp T_0.3;
+T_0.0 ;
+    %load/v 8, v010D4358_0, 1;
+    %jmp/0  T_0.4, 8;
+    %mov 9, 1, 1;
+    %jmp/1  T_0.6, 8;
+T_0.4 ; End of true expr.
+    %jmp/0  T_0.5, 8;
+ ; End of false expr.
+    %blend  9, 0, 1; Condition unknown.
+    %jmp  T_0.6;
+T_0.5 ;
+    %mov 9, 0, 1; Return false value
+T_0.6 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010D1588_0, 0, 9;
+    %load/v 8, v010D4358_0, 1;
+    %jmp/0  T_0.7, 8;
+    %movi 9, 1, 2;
+    %jmp/1  T_0.9, 8;
+T_0.7 ; End of true expr.
+    %jmp/0  T_0.8, 8;
+ ; End of false expr.
+    %blend  9, 0, 2; Condition unknown.
+    %jmp  T_0.9;
+T_0.8 ;
+    %mov 9, 0, 2; Return false value
+T_0.9 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010D4300_0, 0, 9;
+    %jmp T_0.3;
+T_0.1 ;
+    %load/v 8, v010D4358_0, 1;
+    %jmp/0  T_0.10, 8;
+    %mov 9, 0, 1;
+    %jmp/1  T_0.12, 8;
+T_0.10 ; End of true expr.
+    %jmp/0  T_0.11, 8;
+ ; End of false expr.
+    %blend  9, 1, 1; Condition unknown.
+    %jmp  T_0.12;
+T_0.11 ;
+    %mov 9, 1, 1; Return false value
+T_0.12 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010D1588_0, 0, 9;
+    %load/v 8, v010D4358_0, 1;
+    %jmp/0  T_0.13, 8;
+    %mov 9, 0, 2;
+    %jmp/1  T_0.15, 8;
+T_0.13 ; End of true expr.
+    %movi 11, 1, 2;
+    %jmp/0  T_0.14, 8;
+ ; End of false expr.
+    %blend  9, 11, 2; Condition unknown.
+    %jmp  T_0.15;
+T_0.14 ;
+    %mov 9, 11, 2; Return false value
+T_0.15 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v010D4300_0, 0, 9;
+    %jmp T_0.3;
+T_0.3 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_011138A8;
+T_1 ;
+    %set/v v010D15E0_0, 0, 1;
+T_1.0 ;
+    %delay 10, 0;
+    %load/v 8, v010D15E0_0, 1;
+    %inv 8, 1;
+    %set/v v010D15E0_0, 8, 1;
+    %jmp T_1.0;
+    %end;
+    .thread T_1;
+    .scope S_011138A8;
+T_2 ;
+    %delay 10, 0;
+    %set/v v010D1638_0, 0, 1;
+    %delay 10, 0;
+    %set/v v010D1638_0, 1, 1;
+    %delay 10, 0;
+    %set/v v010D1638_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 15 "$finish";
+    %end;
+    .thread T_2;
+    .scope S_011138A8;
+T_3 ;
+    %vpi_call 2 19 "$monitor", $time, " ", "x=%b z=%b", v010D1638_0, v010D1690_0;
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "parity_tb.v";
+    "parity.v";
