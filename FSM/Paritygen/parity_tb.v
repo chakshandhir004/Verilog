@@ -5,18 +5,21 @@ parity p(x,clk,z);
 
 initial begin
     clk=1'b0;
-    forever #10 clk=~clk;
+    forever #5 clk=~clk;
 end
 
 initial begin
-    #10 x=0;
+    $dumpfile("parity.vcd");
+    $dumpvars(0);
+    // $dumplimit(50);
+    #2 x=0;
     #10 x=1;
     #10 x=1;
     #10 $finish;
 end
 
 initial begin
-    $monitor($time," ","x=%b z=%b",x,z);
+    $monitor($time," ","z=%b",z);
 end
     
 endmodule
