@@ -1,37 +1,78 @@
-module seq_detector_1010(input clk, rst_n, x, output z);
-  parameter A = 4'h1;
-  parameter B = 4'h2;
-  parameter C = 4'h3;
-  parameter D = 4'h4;
+//SEQUENCE DETECTOR 
+
+//(a) 1010 (Mealey Machine Overlapping)
+// module seq_1010(input din, clk, rst,
+//                 output reg dout);
   
-  reg [3:0] state, next_state;
-  always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin 
-      state <= A;
-    end
+
+//   parameter S0 = 0, S1 = 1, S2 = 2, S3 = 3;
+  
+  
+//   reg [2:0] state, next_state;
+  
+//   // Next State Logic - combinational logic to compute the next state based on the current state and input value
+//   always @ (*) begin
+//     case (state)
+//       S0: next_state = din ? S1 : S0;
+//       S1: next_state = din ? S1 : S2;
+//       S2: next_state = din ? S3 : S0;
+//       //S3: next_state = din ? S1 : S0;// This transition for non-overlaping sequence detector (If uncommented, comment the next line)
+//       S3: next_state = din ? S1 : S2; // This transition for overlaping sequence detector (If uncommented, comment the previous line)
+//       default: next_state = S0;
+//     endcase
+//   end
+  
+//   // State Memory - Assign the computed next state to the state memory on the clock edge
+//   always @ (posedge clk) begin
+//     if (rst) state <= 2'b00;
+//     else state <= next_state;
+//   end
+  
+//   // Output functional logic - The states for which the output should be '1'
+//   always @ (posedge clk) begin
+//     if (rst) dout <= 1'b0;
+//     else begin
+//       if (~din & (state == S3)) dout <= 1'b1;
+//       else dout <= 1'b0;
+//     end
+//   end
+// endmodule
+
+//(b) 1101 (Mealey Machine Overlapping)
+module seq_1101(input din, clk, rst,
+                output reg dout);
+  
+
+  parameter S0 = 0, S1 = 1, S2 = 2, S3 = 3;
+  
+  
+  reg [2:0] state, next_state;
+  
+  // Next State Logic - combinational logic to compute the next state based on the current state and input value
+  always @ (*) begin
+    case (state)
+      S0: next_state = din ? S1 : S0;
+      S1: next_state = din ? S2 : S0;
+      S2: next_state = din ? S2 : S3;
+      // S3: next_state = din ? S0 : S0;// This transition for non-overlaping sequence detector (If uncommented, comment the next line)
+      S3: next_state = din ? S1 : S0; // This transition for overlaping sequence detector (If uncommented, comment the previous line)
+      default: next_state = S0;
+    endcase
+  end
+  
+  // State Memory - Assign the computed next state to the state memory on the clock edge
+  always @ (posedge clk) begin
+    if (rst) state <= 2'b00;
     else state <= next_state;
   end
   
-  always @(state or x) begin
-    case(state)
-      A: begin
-           if(x == 0) next_state = A;
-           else       next_state = B;
-         end
-      B: begin
-           if(x == 0) next_state = C;
-           else       next_state = B;
-         end
-      C: begin
-           if(x == 0) next_state = A;
-           else       next_state = D;
-         end
-      D: begin
-           if(x == 0) next_state = C;
-           else       next_state = B;
-         end
-      default: next_state = A;
-    endcase
+  // Output functional logic - The states for which the output should be '1'
+  always @ (posedge clk) begin
+    if (rst) dout <= 1'b0;
+    else begin
+      if (din & (state == S3)) dout <= 1'b1;
+      else dout <= 1'b0;
+    end
   end
-  assign z = (state == D)? 1:0;
 endmodule
+//(c)

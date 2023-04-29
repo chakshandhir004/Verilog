@@ -1,35 +1,41 @@
-module TB;
-  reg clk, rst_n, x;
-  wire z;
+module tb ();
   
-  seq_detector_1010 sd(clk, rst_n, x, z);
-  initial clk = 0;   
-  always #2 clk = ~clk;
-    
+  reg din, clk, rst;
+  wire dout;
+  wire [1:0] S;
+  
+  seq_1101 u0 (din, clk, rst, dout);
+  
+  always #1 clk = ~clk;
+  
   initial begin
-    $monitor("%0t: x = %0b, z = %0b", $time, x, z);
-    x = 0;
-    #1 rst_n = 0;
-    #2 rst_n = 1;
+    clk = 0; rst = 1; din = 0;
     
-    #3 x = 1;
-    #4 x = 1;
-    #4 x = 0;
-    #4 x = 1;
-    #4 x = 0;
-    #4 x = 1;
-    #4 x = 0;
-    #4 x = 1;
-    #4 x = 0;
-    #4 x = 1;
-    #4 x = 0;
-    #10;
-    $finish;
+    #5 rst = 0; din = 0;
+    
+    #1 din = 0;
+    #2 din = 0;
+    #2 din = 0;
+    #2 din = 1;
+    #2 din = 0;
+    #2 din = 0;
+    #2 din = 1;
+    #2 din = 0;
+    #2 din = 1;
+    #2 din = 1;
+    #2 din = 0;
+    #2 din = 1;
+    #2 din = 1;
+    #2 din = 0;
+    #2 din = 1;
+    #2 din = 0;
+    #40 $stop;
+    
   end
   
   initial begin
-    // Dump waves
-    $dumpfile("dump.vcd");
+  $dumpfile("dump.vcd");
     $dumpvars(0);
-  end
+end
+  
 endmodule
