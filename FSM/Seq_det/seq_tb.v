@@ -4,7 +4,7 @@ module tb ();
   wire dout;
   wire [1:0] S;
   
-  seq_1101 u0 (din, clk, rst, dout);
+  seq_1011 u0 (din, clk, rst, dout);
   
   always #1 clk = ~clk;
   
