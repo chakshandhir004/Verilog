@@ -1,0 +1,163 @@
+$date
+	Fri May 05 18:11:45 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module test $end
+$var wire 10 ! F [9:0] $end
+$var reg 10 " A [9:0] $end
+$var reg 10 # B [9:0] $end
+$var reg 10 $ C [9:0] $end
+$var reg 10 % D [9:0] $end
+$var reg 1 & clk $end
+$scope module p $end
+$var wire 10 ' A [9:0] $end
+$var wire 10 ( B [9:0] $end
+$var wire 10 ) C [9:0] $end
+$var wire 10 * D [9:0] $end
+$var wire 10 + F [9:0] $end
+$var wire 1 , clk $end
+$var reg 10 - L12_D [9:0] $end
+$var reg 10 . L12_x1 [9:0] $end
+$var reg 10 / L12_x2 [9:0] $end
+$var reg 10 0 L23_D [9:0] $end
+$var reg 10 1 L23_x3 [9:0] $end
+$var reg 10 2 L34_F [9:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx 2
+bx 1
+bx 0
+bx /
+bx .
+bx -
+0,
+bx +
+bx *
+bx )
+bx (
+bx '
+0&
+bx %
+bx $
+bx #
+bx "
+bx !
+$end
+#5
+b11 -
+b11 %
+b11 *
+b110 $
+b110 )
+b1100 #
+b1100 (
+b1010 "
+b1010 '
+1&
+1,
+#9
+b11 /
+b10110 .
+#10
+0&
+0,
+#15
+b11 0
+1&
+1,
+#19
+b11001 1
+#20
+0&
+0,
+#25
+1&
+1,
+b101 $
+b101 )
+b1010 #
+b1010 (
+#29
+b10 /
+b10100 .
+#30
+0&
+0,
+#31
+b1001011 2
+b1001011 !
+b1001011 +
+#35
+1&
+1,
+#39
+b10110 1
+#40
+0&
+0,
+#45
+b10 -
+1&
+1,
+b10 %
+b10 *
+b100 $
+b100 )
+b1011 #
+b1011 (
+b1100 "
+b1100 '
+#49
+b10111 .
+#50
+0&
+0,
+#51
+b1000010 2
+b1000010 !
+b1000010 +
+#55
+b10 0
+1&
+1,
+#59
+b11001 1
+#60
+0&
+0,
+#65
+1&
+1,
+#70
+0&
+0,
+#71
+b110010 2
+b110010 !
+b110010 +
+#75
+1&
+1,
+#80
+0&
+0,
+#85
+1&
+1,
+#90
+0&
+0,
+#95
+1&
+1,
+#100
+0&
+0,
