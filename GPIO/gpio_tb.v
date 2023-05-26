@@ -43,5 +43,4 @@ module GPIO_TB;
     #10;
     $finish;  
   end
-
 endmodule
