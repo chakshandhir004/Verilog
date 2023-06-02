@@ -3,19 +3,19 @@
 `define TRUE 1'b1
 `define FALSE 1'b0
 
-// module upcounter(Q,clk,clr);
-// input clk,clr;
-// output [3:0] Q;
-// reg Q;
+module upcounter(Q,clk,clr);
+input clk,clr;
+output [3:0] Q;
+reg Q;
 
-// always @(posedge clk) begin
-//     if(clr) Q=4'd0;
-//     else begin
-//         Q=(Q+1)%16;
-//     end
-// end
+always @(posedge clk) begin
+    if(clr) Q=4'd0;
+    else begin
+        Q=(Q+1)%16;
+    end
+end
     
-// endmodule
+endmodule
 
 
 //Ripple counter
@@ -63,16 +63,16 @@
 
 
 //Parametrized Counter
-module counter (clk,clr,count);
-parameter N = 3;
-input clk,clr;
-output [0:N] count;
-reg count;
+// module counter (clk,clr,count);
+// parameter N = 3;
+// input clk,clr;
+// output [0:N] count;
+// reg count;
 
-always @(posedge clk) begin
-    if(clr) count<=0;
-    else count<=count+4'b 0001;
-end
+// always @(posedge clk) begin
+//     if(clr) count<=0;
+//     else count<=count+4'b 0001;
+// end
     
-endmodule
+// endmodule
     

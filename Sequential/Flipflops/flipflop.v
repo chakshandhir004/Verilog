@@ -3,25 +3,25 @@
 
 
 //SR FLIPFLOP
-module srflipflop(sr,clk,q,qbar);
-input [1:0] sr;
-input clk;
-output q,qbar;
-reg q,qbar;
+// module srflipflop(sr,clk,q,qbar);
+// input [1:0] sr;
+// input clk;
+// output q,qbar;
+// reg q,qbar;
 
 
-always @(posedge clk) begin
-    case(sr)
-    2'b00 : q=q;
-    2'b01 : q=0;
-    2'b10 : q=1;
-    2'b11 : q=1'bz;
-    endcase
-    assign qbar=~q;
-end
+// always @(posedge clk) begin
+//     case(sr)
+//     2'b00 : q=q;
+//     2'b01 : q=0;
+//     2'b10 : q=1;
+//     2'b11 : q=1'bz;
+//     endcase
+//     assign qbar=~q;
+// end
 
     
-endmodule
+// endmodule
 
 
 
@@ -56,25 +56,25 @@ endmodule
 
 
 //JK Flipflop
-// module jkflipflop (jk,clk,q,qbar);
-// input [1:0] jk;
-// input clk;
-// output q,qbar;
-// reg q,qbar;
+module jkflipflop (jk,clk,q,qbar);
+input [1:0] jk;
+input clk;
+output q,qbar;
+reg q,qbar;
 
-// always @(posedge clk) begin
-//     case(jk)
-//      2'b00 : q=q;
-//      2'b01 : q=0;
-//      2'b10 : q=1;
-//      2'b11 : q=~q;
-//     endcase
-//   assign qbar=~q;
+always @(posedge clk) begin
+    case(jk)
+     2'b00 : q=q;
+     2'b01 : q=0;
+     2'b10 : q=1;
+     2'b11 : q=~q;
+    endcase
+  assign qbar=~q;
 
-// end
+end
 
     
-// endmodule
+endmodule
 
 
 

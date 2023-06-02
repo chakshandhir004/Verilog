@@ -1,32 +1,32 @@
-module test();
-reg clk;
-reg[1:0] sr;
-wire q,qbar;
+// module test();
+// reg clk;
+// reg[1:0] sr;
+// wire q,qbar;
 
-srflipflop s(sr,clk,q,qbar);
+// srflipflop s(sr,clk,q,qbar);
 
-initial begin              // Clock generator
-    clk=`TRUE;
-    forever #5 clk=~clk;
-end
+// initial begin              // Clock generator
+//     clk=`TRUE;
+//     forever #5 clk=~clk;
+// end
 
-initial begin
-    $dumpfile("flipflop.vcd");
-    $dumpvars(0);
-   #50 sr=2'b00;
-   #50 sr=2'b01;
-   #50 sr=2'b10;
-   #50 sr=2'b11;
-   #50 sr=2'b00;
-   #50 $finish;
+// initial begin
+//     $dumpfile("flipflop.vcd");
+//     $dumpvars(0);
+//    #50 sr=2'b00;
+//    #50 sr=2'b01;
+//    #50 sr=2'b10;
+//    #50 sr=2'b11;
+//    #50 sr=2'b00;
+//    #50 $finish;
 
-end
+// end
 
-initial begin
-    $monitor($time," ","sr=%b q=%b qbar=%b",sr,q,qbar);
-end
+// initial begin
+//     $monitor($time," ","sr=%b q=%b qbar=%b",sr,q,qbar);
+// end
 
-endmodule
+// endmodule
 
 
 
@@ -96,32 +96,32 @@ endmodule
 
 
 
-// module test();
-// reg clk;
-// reg[1:0] jk;
-// wire q,qbar;
+module test();
+reg clk;
+reg[1:0] jk;
+wire q,qbar;
 
-// jkflipflop s(jk,clk,q,qbar);
+jkflipflop s(jk,clk,q,qbar);
 
-// initial begin              // Clock generator
-//     clk=`TRUE;
-//     forever #5 clk=~clk;
-// end
+initial begin              // Clock generator
+    clk=`TRUE;
+    forever #5 clk=~clk;
+end
 
-// initial begin
-//     $dumpfile("flipflop.vcd");
-//     $dumpvars(0);
-//    #50 jk=2'b00;
-//    #50 jk=2'b01;
-//    #50 jk=2'b10;
-//    #50 jk=2'b11;
-//    #50 jk=2'b00;
-//    #50 $finish;
+initial begin
+    $dumpfile("flipflop.vcd");
+    $dumpvars(0);
+   #50 jk=2'b00;
+   #50 jk=2'b01;
+   #50 jk=2'b10;
+   #50 jk=2'b11;
+   #50 jk=2'b00;
+   #50 $finish;
 
-// end
+end
 
-// initial begin
-//     $monitor($time," ","jk=%b q=%b qbar=%b",jk,q,qbar);
-// end
+initial begin
+    $monitor($time," ","jk=%b q=%b qbar=%b",jk,q,qbar);
+end
 
-// endmodule
+endmodule

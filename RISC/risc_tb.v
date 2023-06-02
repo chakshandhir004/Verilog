@@ -12,13 +12,17 @@ initial begin
     end
 end
 
+
+// Eg1 : Load the data from loaction 120 add 45 to it then store the data at location 121
+// Initialize the reg R1 with 120 then load the contents of memory location 120 in reg R2 and add 45 to it
+// add 1 to 120 then memory location will be 121 which is in reg 121 then store the data of R2 to that mem add
 initial begin
     for (k=0; k<31; k=k+1)
      mips.Reg[k]=k;
 
      mips.Mem[0] = 32'h28010078; //ADDI R10,R0,120
      mips.Mem[1] = 32'h0c631800; // OR R3,R3,R3
-     mips.Mem[2] = 32'h20220000; // LW 42,0(R1)
+     mips.Mem[2] = 32'h20220000; // LW R2,0(R1)
      mips.Mem[3] = 32'h0c631800; // OR R3,R3,R3
      mips.Mem[4] = 32'h2842002c; // ADDI R2,R2,45
      mips.Mem[5] = 32'h0c631800; // OR R3,R3,R3
@@ -41,5 +45,7 @@ initial begin
 end
 
 
+
+// Eg2: 
     
 endmodule
